@@ -1,0 +1,23 @@
+version: "3"
+
+networks:
+  default:
+    external:
+      name: docker-dev
+
+services:
+
+  app:
+    image: gatsby-netlify-example:dev
+    command: yarn develop
+    volumes:
+      - ./:/site
+    working_dir: /site
+    ports:
+      - "80"
+    environment:
+      VIRTUAL_HOST: asa.local
+    networks:
+      default:
+        aliases:
+          - asa.local
